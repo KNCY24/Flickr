@@ -30,6 +30,11 @@ class MainViewModel : ViewModel() {
             if (response.isSuccessful) {
                 mldPhoto.value=  response.body()?.photos?.photo?.get(0)
             }
+
+            fun nextPhoto() {
+                position =+1
+                mldPhoto.value=  response.body()?.photos?.photo?.get(position)
+            }
         }
     }
 
@@ -37,7 +42,4 @@ class MainViewModel : ViewModel() {
         repository.getPhotos(callback)
     }
 
-    fun nextPhoto() {
-        position =+1
-    }
 }
