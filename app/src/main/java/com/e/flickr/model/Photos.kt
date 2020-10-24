@@ -1,32 +1,6 @@
 package com.e.flickr.model
 
-class Photos{
-    var page: Integer?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-    var pages: Integer?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-    var perpage: Integer?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-    var total: String?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-    var photo: List<Photo>?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-
+class Photos(val page:Integer,val pages:Integer,val perpage:Integer,val total:String,val photo:List<Photo>){
 
     override fun toString(): String {
         return "Photos(page=$page, pages=$pages, perpage=$perpage, total='$total', photo=$photo)"
