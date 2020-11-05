@@ -1,4 +1,6 @@
 package com.e.flickr.ui.liste
 
-class ListFragment {
+import androidx.fragment.app.Fragment
+
+class ListFragment : Fragment(){
 }
