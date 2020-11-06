@@ -18,6 +18,7 @@ class MainViewModel : ViewModel() {
     var position = 0
     val repository = Repository()
     val mldPhoto = MutableLiveData<Photo>()
+    val mldPhotos = MutableLiveData<Photos>()
 
     val callback = object:Callback<SearchResult>{
         override fun onFailure(call: Call<SearchResult>, t: Throwable) {
@@ -25,15 +26,9 @@ class MainViewModel : ViewModel() {
         }
 
         override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
-           // val lPhoto = mlPhoto.get(0).photos?.photo
             var reponse: SearchResult? = response.body()
-            if (response.isSuccessful) {
-                mldPhoto.value=  response.body()?.photos?.photo?.get(0)
-            }
-
-            fun nextPhoto() {
-                position =+1
-                mldPhoto.value=  response.body()?.photos?.photo?.get(position)
+            if (reponse != null) {
+                mldPhoto.value= reponse.photos.photo.get(0)
             }
         }
     }
@@ -42,4 +37,11 @@ class MainViewModel : ViewModel() {
         repository.getPhotos(callback)
     }
 
+    fun nextPhoto() {
+        position =+1
+        if(position == mldPhotos.value?.photo?.size !!){
+            position = 0
+        }
+        mldPhoto.value=  mldPhotos.value?.photo?.get(position)
+    }
 }

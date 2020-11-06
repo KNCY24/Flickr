@@ -1,6 +1,5 @@
 package com.e.flickr.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.e.flickr.R
 import com.e.flickr.model.Photo
@@ -22,21 +23,21 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var imageview : ImageView
-    private lateinit var btn1 :Button
-    private lateinit var btn2 :Button
+    private lateinit var btnNEXT :Button
+    private lateinit var btnALL :Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater.inflate(R.layout.main_fragment, container, false)
         imageview = view.findViewById(R.id.imageView)
-        btn1 = view.findViewById(R.id.button)
-        btn2 = view.findViewById(R.id.button2)
+        btnNEXT = view.findViewById(R.id.buttonNEXT)
+        btnALL = view.findViewById(R.id.buttonALL)
 
-        /*btn1.setOnClickListener(View.OnClickListener {
+        btnNEXT.setOnClickListener(View.OnClickListener {
             viewModel.nextPhoto()
         })
-        btn2.setOnClickListener(View.OnClickListener {
-
-        })*/
+        btnALL.setOnClickListener(View.OnClickListener {
+            Navigation.findNavController(btnALL).navigate(R.id.action_mainF_to_listF);
+        })
         return view
     }
 
@@ -46,7 +47,11 @@ class MainFragment : Fragment() {
         viewModel = MainViewModel()
         viewModel.mldPhoto.observe(requireActivity(), Observer<Photo> { photo: Photo ->
             val url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg"
-            getActivity()?.let { Glide.with(it).load(url).into(imageview) }
+            Glide.with(requireActivity()).load(url).into(imageview)
+            imageview.setOnClickListener(View.OnClickListener{
+                val action = MainFragmentDirections.actionMainFToFullF(url)
+                findNavController().navigate(action)
+            })
         })
     }
 

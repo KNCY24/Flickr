@@ -30,16 +30,16 @@
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonNEXT"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="NEXT"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/buttonALL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonALL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="ALL IMAGES"
