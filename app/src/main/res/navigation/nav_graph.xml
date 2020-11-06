@@ -12,10 +12,25 @@
         <action
             android:id="@+id/action_mainF_to_listF"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_mainF_to_fullF"
+            app:destination="@id/fullFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
         android:name="com.e.flickr.ui.liste.ListFragment"
         android:label="list_fragment"
-        tools:layout="@layout/list_fragment" />
+        tools:layout="@layout/list_fragment" >
+        <action
+            android:id="@+id/action_listF_to_fullF"
+            app:destination="@id/fullFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullFragment"
+        android:name="com.e.flickr.ui.full.FullFragment"
+        android:label="FullFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>
