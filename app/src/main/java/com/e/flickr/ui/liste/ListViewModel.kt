@@ -2,6 +2,7 @@ package com.e.flickr.ui.liste
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.e.flickr.model.Photo
 import com.e.flickr.model.SearchResult
 import com.e.flickr.repository.Repository
@@ -9,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListViewModel : Fragment() {
+class ListViewModel : ViewModel() {
 
     var position = 0
     val repository = Repository()

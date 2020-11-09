@@ -1,7 +1,7 @@
 package com.e.flickr.ui.full
 
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 
-class FullViewModel : Fragment() {
+class FullViewModel : ViewModel() {
 
 }
